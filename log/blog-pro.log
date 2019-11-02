@@ -1,0 +1,11 @@
+2019-11-02 00:41:28.812  INFO 9236 --- [restartedMain] com.zheng.blog.BlogApplication           : Starting BlogApplication on DESKTOP-SJK7HT2 with PID 9236 (E:\demo\idea\blog\target\classes started by rookie-zheng in E:\demo\idea\blog)
+2019-11-02 00:41:28.817  INFO 9236 --- [restartedMain] com.zheng.blog.BlogApplication           : The following profiles are active: pro
+2019-11-02 00:41:32.698  WARN 9236 --- [restartedMain] com.zaxxer.hikari.util.DriverDataSource  : Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2019-11-02 00:41:33.892  WARN 9236 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-11-02 00:41:34.328  WARN 9236 --- [restartedMain] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2019-11-02 00:41:34.569  INFO 9236 --- [restartedMain] com.zheng.blog.BlogApplication           : Started BlogApplication in 6.56 seconds (JVM running for 7.312)
+2019-11-02 00:42:05.113  INFO 17700 --- [restartedMain] com.zheng.blog.BlogApplication           : Starting BlogApplication on DESKTOP-SJK7HT2 with PID 17700 (E:\demo\idea\blog\target\classes started by rookie-zheng in E:\demo\idea\blog)
+2019-11-02 00:42:05.117  INFO 17700 --- [restartedMain] com.zheng.blog.BlogApplication           : The following profiles are active: pro
+2019-11-02 00:42:09.012  WARN 17700 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-11-02 00:42:09.435  WARN 17700 --- [restartedMain] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2019-11-02 00:42:09.629  INFO 17700 --- [restartedMain] com.zheng.blog.BlogApplication           : Started BlogApplication in 5.139 seconds (JVM running for 5.829)
