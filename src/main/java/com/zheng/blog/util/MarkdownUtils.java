@@ -14,15 +14,17 @@ import org.commonmark.renderer.html.HtmlRenderer;
 
 import java.util.*;
 
-public class MarkdownUtil {
-
+/**
+ * Created by limi on 2017/10/22.
+ */
+public class MarkdownUtils {
 
     /**
-     * markdown格式转换成 HTML 格式
+     * markdown格式转换成HTML格式
      * @param markdown
      * @return
      */
-    public static String markdownToHtml(String markdown){
+    public static String markdownToHtml(String markdown) {
         Parser parser = Parser.builder().build();
         Node document = parser.parse(markdown);
         HtmlRenderer renderer = HtmlRenderer.builder().build();
@@ -71,6 +73,7 @@ public class MarkdownUtil {
             }
         }
     }
+
 
     public static void main(String[] args) {
         String table = "| hello | hi   | 哈哈哈   |\n" +

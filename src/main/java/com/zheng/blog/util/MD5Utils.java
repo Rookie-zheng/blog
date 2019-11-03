@@ -38,7 +38,7 @@ public class MD5Utils {
     }
 
     public static void main(String[] args) {
-        String code = "123456";
+        String code = "1234567";
         System.out.printf(code(code));
     }
 }
