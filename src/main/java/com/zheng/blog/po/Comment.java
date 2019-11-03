@@ -26,6 +26,8 @@ public class Comment {
     @OneToMany(mappedBy = "parentComment")
     private List<Comment> replyComments = new ArrayList<>();
 
+    private boolean adminComment;
+
     @ManyToOne
     private Comment parentComment;
 
@@ -113,6 +115,10 @@ public class Comment {
                 ", content='" + content + '\'' +
                 ", avatar='" + avatar + '\'' +
                 ", createTime=" + createTime +
+                ", blog=" + blog +
+                ", replyComments=" + replyComments +
+                ", adminComment=" + adminComment +
+                ", parentComment=" + parentComment +
                 '}';
     }
 }

@@ -1,5 +1,7 @@
 package com.zheng.blog.po;
 
+import com.sun.org.apache.bcel.internal.generic.RETURN;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -37,10 +39,14 @@ public class Blog {
     @ManyToOne
     private User user;
 
+    @Transient
     private String tagIds;
 
     private String description;
+
     @OneToMany(mappedBy = "blog")
+    private List<Comment> comments = new ArrayList<>();
+
     public List<Comment> getComments() {
         return comments;
     }
@@ -48,9 +54,6 @@ public class Blog {
     public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
-
-    @OneToMany(mappedBy = "blog")
-    private List<Comment> comments = new ArrayList<>();
 
     public String getTagIds() {
         return tagIds;
@@ -197,7 +200,21 @@ public class Blog {
     }
 
     private String tagsToIds(List<Tag> tags) {
-        return null;
+        if(!tags.isEmpty()){
+            StringBuffer ids = new StringBuffer();
+            boolean flag = false;
+            for (Tag tag : tags){
+                if(flag){
+                    ids.append(",");
+                }else{
+                    flag = true;
+                }
+                ids.append(tag.getId());
+            }
+            return ids.toString();
+        }else{
+            return tagIds;
+        }
     }
 
     @Override
