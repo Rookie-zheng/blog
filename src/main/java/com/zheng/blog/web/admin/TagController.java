@@ -30,7 +30,7 @@ public class TagController {
     }
 
     @GetMapping("/tags/input")
-    public String input(Model model){
+    synchronized public String input(Model model){
         model.addAttribute("tag",new Tag());
         return "admin/tags-input";
     }

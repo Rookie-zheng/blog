@@ -33,7 +33,7 @@ public class TypeController {
 
     //新增分类
     @GetMapping("/types/input")
-    public String input(Model model) {
+    synchronized public String input(Model model) {
         model.addAttribute("type", new Type());
         return "admin/types-input";
     }
