@@ -34,6 +34,14 @@ public class Comment {
     public Comment() {
     }
 
+    public boolean isAdminComment() {
+        return adminComment;
+    }
+
+    public void setAdminComment(boolean adminComment) {
+        this.adminComment = adminComment;
+    }
+
     public List<Comment> getReplyComments() {
         return replyComments;
     }
