@@ -1,9 +1,13 @@
 package com.zheng.blog.web.admin;
 
+import com.zheng.blog.interceptor.NoRepeatSubmit;
 import com.zheng.blog.po.Tag;
 import com.zheng.blog.service.TagService;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,18 +28,20 @@ public class TagController {
     private TagService tagService;
 
     @GetMapping("/tags")
-    public String tags(Pageable pageable, Model model){
+    public String tags(@PageableDefault(size = 10,sort = {"id"},direction = Sort.Direction.DESC) Pageable pageable, Model model){
         model.addAttribute("page",tagService.listTag(pageable));
         return "admin/tags";
     }
 
     @GetMapping("/tags/input")
-    synchronized public String input(Model model){
+    @NoRepeatSubmit
+    public String input(Model model){
         model.addAttribute("tag",new Tag());
         return "admin/tags-input";
     }
 
     @GetMapping("/tag/{id}/input")
+    @NoRepeatSubmit
     public String editInput(@PathVariable Long id, Model model){
         model.addAttribute("tag",tagService.getTag(id));
         return "admin/tags-input";
@@ -43,6 +49,7 @@ public class TagController {
 
 
     @PostMapping("/tags")
+    @NoRepeatSubmit
     public String post(@Valid Tag tag, BindingResult result, RedirectAttributes attributes){
         Tag tag1 = tagService.getTagByName(tag.getName());
         if(tag1 != null){
@@ -61,7 +68,8 @@ public class TagController {
     }
 
     @PostMapping("/tags/{id}")
-    public String editPost(@Valid Tag tag, BindingResult result, @PathVariable Long id, RedirectAttributes attributes) {
+    @NoRepeatSubmit
+    public String editPost(@Valid Tag tag, BindingResult result, @PathVariable Long id, RedirectAttributes attributes) throws NotFoundException {
         Tag tag1 = tagService.getTagByName(tag.getName());
         if (tag1 != null) {
             result.rejectValue("name","nameError","不能添加重复的分类");

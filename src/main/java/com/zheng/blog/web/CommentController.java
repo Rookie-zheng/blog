@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
@@ -22,7 +24,8 @@ public class CommentController {
     @Value("${comment.avatar}")
     private String avatar;
 
-    public String comments(Long blogId, Model model){
+    @GetMapping("/comments/{blogId}")
+    public String comments(@PathVariable Long blogId, Model model){
         model.addAttribute("comments",commentService.listCommentByBlogId(blogId));
         return "blog :: commentList";
     }
@@ -33,10 +36,10 @@ public class CommentController {
         comment.setBlog(blogService.getBlog(blogId));
         User user = (User) session.getAttribute("user");
         //判断博主是否登录，如果登录，评论头像就用博主头像，区分博主和访客
-        if(user != null){
+        if (user != null){
             comment.setAvatar(user.getAvatar());
             comment.setAdminComment(true);
-        }else {
+        } else {
             comment.setAvatar(avatar);
         }
         commentService.saveComment(comment);

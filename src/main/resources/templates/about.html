@@ -39,7 +39,7 @@
       <div class="ui stackable grid">
         <div class="eleven wide column">
           <div class="ui segment">
-            <img src="https://unsplash.it/800/600?image=1005" alt="" class="ui rounded image">
+            <img src="https://unsplash.it/800/600?image=336" alt="" class="ui rounded image">
           </div>
         </div>
         <div class="five wide column">
@@ -47,8 +47,8 @@
             <div class="ui header">关于我</div>
           </div>
           <div class="ui attached segment">
-            <p class="m-text">李仁密，一个独立开发者，折腾在 0 和 1 世界的大叔；一个终身学习者，誓将学习无限循环. 希望结识可以共同成长的小伙伴.</p>
-            <p class="m-text">热爱编程，喜欢折腾，正在探索高效学习编程技术的方法...</p>
+            <p class="m-text" th:text="#{about.me}"></p>
+            <p class="m-text" th:text="#{about.interest}"></p>
           </div>
           <div class="ui attached segment">
             <div class="ui orange basic left pointing label">编程</div>
@@ -59,21 +59,26 @@
           <div class="ui attached segment">
             <div class="ui teal basic left pointing label m-margin-tb-tiny">Java</div>
             <div class="ui teal basic left pointing label m-margin-tb-tiny">JavaScript</div>
-            <div class="ui teal basic left pointing label m-margin-tb-tiny">Node</div>
-            <div class="ui teal basic left pointing label m-margin-tb-tiny">React</div>
-            <div class="ui teal basic left pointing label m-margin-tb-tiny">RN</div>
+            <div class="ui teal basic left pointing label m-margin-tb-tiny">SpringBoot</div>
+            <div class="ui teal basic left pointing label m-margin-tb-tiny">Mybatis</div>
+            <div class="ui teal basic left pointing label m-margin-tb-tiny">Spring</div>
             <div class="ui teal basic left pointing label m-margin-tb-tiny">MYSQL</div>
             <div class="ui teal basic left pointing label m-margin-tb-tiny">...</div>
           </div>
           <div class="ui bottom attached segment">
-            <a href="#" class="ui circular icon button"><i class="github icon"></i></a>
+            <a href="#" class="ui github circular icon button"><i class="github icon"></i></a>
             <a href="#" class="ui wechat circular icon button"><i class="weixin icon"></i></a>
-            <a href="#" class="ui qq circular icon button" data-content="865729312" data-position="bottom center"><i class="qq icon"></i></a>
+            <a href="#" class="ui qq circular icon button" data-content="944699017" data-position="bottom center"><i class="qq icon"></i></a>
           </div>
 
           <div class="ui wechat-qr flowing popup transition hidden">
-            <img src="../static/images/wechat.jpg" alt="" class="ui rounded image" style="width: 110px">
+            <img src="../static/images/wechat.jpg" th:src="@{/images/wechat.jpg}" alt="" class="ui rounded image" style="width: 110px">
           </div>
+
+          <div class="ui github-qr flowing popup transition hidden">
+            <img src="../static/images/wechat.jpg" th:src="@{/images/github.jpg}" alt="" class="ui rounded image" style="width: 110px">
+          </div>
+
           </div>
       </div>
 
@@ -104,8 +109,8 @@
         <div class="three wide column">
           <h4 class="ui inverted header m-text-thin m-text-spaced ">联系我</h4>
           <div class="ui inverted link list">
-            <a href="#" class="item m-text-thin">Email：lirenmi@163.com</a>
-            <a href="#" class="item m-text-thin">QQ：865729312</a>
+            <a href="#" class="item m-text-thin">Email：944699017@qq.com</a>
+            <a href="#" class="item m-text-thin">QQ：944699017</a>
           </div>
         </div>
         <div class="seven wide column">
@@ -114,7 +119,7 @@
         </div>
       </div>
       <div class="ui inverted section divider"></div>
-      <p class="m-text-thin m-text-spaced m-opacity-tiny">Copyright © 2016 - 2017 Lirenmi Designed by Lirenmi</p>
+      <p class="m-text-thin m-text-spaced m-opacity-tiny">Copyright © 2019 - 2019 rookie-zheng Designed by rookie-zheng</p>
     </div>
 
   </footer>
@@ -130,6 +135,11 @@
 
     $('.wechat').popup({
       popup : $('.wechat-qr'),
+      position: 'bottom center'
+    });
+
+    $('.github').popup({
+      popup : $('.github-qr'),
       position: 'bottom center'
     });
     $('.qq').popup();

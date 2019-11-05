@@ -1,5 +1,6 @@
 package com.zheng.blog.web.admin;
 
+import com.zheng.blog.interceptor.NoRepeatSubmit;
 import com.zheng.blog.po.Type;
 import com.zheng.blog.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,8 @@ public class TypeController {
 
     //新增分类
     @GetMapping("/types/input")
-    synchronized public String input(Model model) {
+    @NoRepeatSubmit
+    public String input(Model model) {
         model.addAttribute("type", new Type());
         return "admin/types-input";
     }
@@ -46,6 +48,7 @@ public class TypeController {
 
 
     @PostMapping("/types")
+    @NoRepeatSubmit
     public String post(@Valid Type type, BindingResult result, RedirectAttributes attributes) {
         Type type1 = typeService.getTypeByName(type.getName());
         if (type1 != null) {
@@ -65,6 +68,7 @@ public class TypeController {
 
 
     @PostMapping("/types/{id}")
+    @NoRepeatSubmit
     public String editPost(@Valid Type type, BindingResult result,@PathVariable Long id, RedirectAttributes attributes) {
         Type type1 = typeService.getTypeByName(type.getName());
         if (type1 != null) {
