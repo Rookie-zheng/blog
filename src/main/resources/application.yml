@@ -2,9 +2,16 @@ spring:
   thymeleaf:
     mode: HTML
   profiles:
-    active: pro
+    active: dev
   messages:
     basename: i18n/messages
+  http:
+    multipart:
+      enabled: true
+      file-size-threshold: 0
+      location: "E:\fileUpLoad"
+      max-file-size: 300MB
+      max-request-size: 300MB
 
 comment.avatar: /images/avatar.png
 
