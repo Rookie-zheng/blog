@@ -1,5 +1,6 @@
-package com.zheng.blog.interceptor;
+package com.zheng.blog.config;
 
+import com.zheng.blog.interceptor.LoginInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;

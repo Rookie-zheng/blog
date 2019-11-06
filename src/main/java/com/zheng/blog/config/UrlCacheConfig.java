@@ -1,4 +1,4 @@
-package com.zheng.blog.interceptor;
+package com.zheng.blog.config;
 
 
 import com.google.common.cache.Cache;
