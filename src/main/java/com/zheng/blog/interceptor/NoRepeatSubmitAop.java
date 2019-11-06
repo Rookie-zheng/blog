@@ -31,15 +31,14 @@ public class NoRepeatSubmitAop{
             String sessionId = RequestContextHolder.getRequestAttributes().getSessionId();
             HttpServletRequest request = attributes.getRequest();
             String key = sessionId + "-" + request.getServletPath();
+            System.out.println(sessionId+"-------------------------------");
             if (cache.getIfPresent(key) == null) {// 如果缓存中有这个url视为重复提交
                 Object o = pjp.proceed();
                 cache.put(key, 0);
-                System.out.println("重复提交NULL");
                 return o;
             } else {
                 logger.error("重复提交");
-                System.out.println("重复提交");
-                return null;
+                return pjp.proceed(); //"redirect:/admin/types"
             }
         } catch (Throwable e) {
             e.printStackTrace();
