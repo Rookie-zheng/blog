@@ -41,6 +41,7 @@ public class TypeController {
     }
 
     @GetMapping("/types/{id}/input")
+    @NoRepeatSubmit
     public String editInput(@PathVariable Long id, Model model) {
         model.addAttribute("type", typeService.getType(id));
         return "admin/types-input";
