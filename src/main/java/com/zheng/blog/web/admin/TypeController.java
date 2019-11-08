@@ -3,6 +3,8 @@ package com.zheng.blog.web.admin;
 import com.zheng.blog.interceptor.NoRepeatSubmit;
 import com.zheng.blog.po.Type;
 import com.zheng.blog.service.TypeService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -20,11 +22,13 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/admin")
+@Api(tags = "后台分类接口")
 public class TypeController {
 
     @Autowired
     private TypeService typeService;
 
+    @ApiOperation("分类页显示接口")
     @GetMapping("/types")
     public String types(@PageableDefault(size = 10,sort = {"id"},direction = Sort.Direction.DESC)
                                 Pageable pageable, Model model) {
@@ -33,6 +37,7 @@ public class TypeController {
     }
 
     //新增分类
+    @ApiOperation("分类新增接口")
     @GetMapping("/types/input")
     @NoRepeatSubmit
     public String input(Model model) {
@@ -40,6 +45,7 @@ public class TypeController {
         return "admin/types-input";
     }
 
+    @ApiOperation("根据id修改分类接口")
     @GetMapping("/types/{id}/input")
     @NoRepeatSubmit
     public String editInput(@PathVariable Long id, Model model) {
@@ -48,6 +54,7 @@ public class TypeController {
     }
 
 
+    @ApiOperation("分类添加判断是否重复接口")
     @PostMapping("/types")
     @NoRepeatSubmit
     public String post(@Valid Type type, BindingResult result, RedirectAttributes attributes) {
@@ -67,7 +74,7 @@ public class TypeController {
         return "redirect:/admin/types";
     }
 
-
+    @ApiOperation("分类修改判断是否重复接口")
     @PostMapping("/types/{id}")
     @NoRepeatSubmit
     public String editPost(@Valid Type type, BindingResult result,@PathVariable Long id, RedirectAttributes attributes) {
@@ -87,6 +94,7 @@ public class TypeController {
         return "redirect:/admin/types";
     }
 
+    @ApiOperation("根据id删除分类")
     @GetMapping("/types/{id}/delete")
     public String delete(@PathVariable Long id, RedirectAttributes attributes) {
         typeService.deleteType(id);

@@ -7,6 +7,8 @@ import com.zheng.blog.service.BlogService;
 import com.zheng.blog.service.TagService;
 import com.zheng.blog.service.TypeService;
 import com.zheng.blog.vo.BlogQuery;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -24,6 +26,7 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/admin")
+@Api(tags = "后台博客管理接口")
 public class BlogController {
 
     private static final String INPUT = "admin/blogs-input";
@@ -38,6 +41,7 @@ public class BlogController {
     @Autowired
     private TagService tagService;
 
+    @ApiOperation("博客列表")
     @GetMapping("/blogs")
     public String blogs(@PageableDefault(size = 8, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
                         BlogQuery blog, Model model) {
@@ -46,6 +50,7 @@ public class BlogController {
         return LIST;
     }
 
+    @ApiOperation("博客搜索")
     @PostMapping("/blogs/search")
     public String search(@PageableDefault(size = 8, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
                          BlogQuery blog, Model model) {
@@ -54,6 +59,7 @@ public class BlogController {
     }
 
 
+    @ApiOperation("博客发布")
     @GetMapping("/blogs/input")
     public String input(Model model) {
         setTypeAndTag(model);
@@ -67,6 +73,7 @@ public class BlogController {
     }
 
 
+    @ApiOperation("根据id修改博客")
     @GetMapping("/blogs/{id}/input")
     public String editInput(@PathVariable Long id, Model model) {
         setTypeAndTag(model);
@@ -78,6 +85,7 @@ public class BlogController {
 
 
 
+    @ApiOperation("博客新增或修改判断接口")
     @PostMapping("/blogs")
     public String post(Blog blog, RedirectAttributes attributes, HttpSession session) {
         blog.setUser((User) session.getAttribute("user"));

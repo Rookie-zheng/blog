@@ -3,6 +3,8 @@ package com.zheng.blog.web.admin;
 import com.zheng.blog.interceptor.NoRepeatSubmit;
 import com.zheng.blog.po.Tag;
 import com.zheng.blog.service.TagService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -22,17 +24,20 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/admin")
+@Api(tags = "后台标签接口")
 public class TagController {
 
     @Autowired
     private TagService tagService;
 
+    @ApiOperation("标签页显示接口")
     @GetMapping("/tags")
     public String tags(@PageableDefault(size = 10,sort = {"id"},direction = Sort.Direction.DESC) Pageable pageable, Model model){
         model.addAttribute("page",tagService.listTag(pageable));
         return "admin/tags";
     }
 
+    @ApiOperation("标签新增接口")
     @GetMapping("/tags/input")
     @NoRepeatSubmit
     public String input(Model model){
@@ -40,6 +45,7 @@ public class TagController {
         return "admin/tags-input";
     }
 
+    @ApiOperation("根据id 修改标签接口")
     @GetMapping("/tag/{id}/input")
     @NoRepeatSubmit
     public String editInput(@PathVariable Long id, Model model){
@@ -48,6 +54,8 @@ public class TagController {
     }
 
 
+
+    @ApiOperation("标签添加判断接口")
     @PostMapping("/tags")
     @NoRepeatSubmit
     public String post(@Valid Tag tag, BindingResult result, RedirectAttributes attributes){
@@ -67,6 +75,7 @@ public class TagController {
         return "redirect:/admin/tags";
     }
 
+    @ApiOperation("根据id，标签修改判断接口")
     @PostMapping("/tags/{id}")
     @NoRepeatSubmit
     public String editPost(@Valid Tag tag, BindingResult result, @PathVariable Long id, RedirectAttributes attributes) throws NotFoundException {
@@ -86,6 +95,7 @@ public class TagController {
         return "redirect:/admin/tags";
     }
 
+    @ApiOperation("根据id删除标签接口")
     @GetMapping("/tags/{id}/delete")
     public String delete(@PathVariable Long id,RedirectAttributes attributes) {
         tagService.deleteTag(id);
