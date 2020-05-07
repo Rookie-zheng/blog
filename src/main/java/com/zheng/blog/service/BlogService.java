@@ -27,7 +27,7 @@ public interface BlogService {
 
     List<Blog> listRecommendBlogTop(Integer size);
 
-    Map<String,List<Blog>> archiveBlog();
+    Map<String,Page<Blog>> archiveBlog(Pageable pageable);
 
     Long countBlog();
 
