@@ -46,7 +46,7 @@ public class TagController {
     }
 
     @ApiOperation("根据id 修改标签接口")
-    @GetMapping("/tag/{id}/input")
+    @GetMapping("/tags/{id}/input")
     @NoRepeatSubmit
     public String editInput(@PathVariable Long id, Model model){
         model.addAttribute("tag",tagService.getTag(id));

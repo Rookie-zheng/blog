@@ -33,8 +33,8 @@ public class FileUploadController {
         String fileName = file.getOriginalFilename();
         int size =(int) file.getSize();
         System.out.println(fileName + "-->" + size);
-
-        String path = "E:\\fileUpLoad";
+            String path = "/root/fileUpload";
+        //String path = "E:\\fileUpLoad";
         File dest = new File(path + "/" + fileName);
         if(!dest.getParentFile().exists()){ //判断文件父目录是否存在
             dest.getParentFile().mkdir();

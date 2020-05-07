@@ -31,7 +31,7 @@ public class TypeController {
     @ApiOperation("分类页显示接口")
     @GetMapping("/types")
     public String types(@PageableDefault(size = 10,sort = {"id"},direction = Sort.Direction.DESC)
-                                Pageable pageable, Model model) {
+                                 Pageable pageable, Model model) {
         model.addAttribute("page",typeService.listType(pageable));
         return "admin/types";
     }
