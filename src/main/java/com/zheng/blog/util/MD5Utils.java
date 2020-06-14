@@ -13,7 +13,8 @@ public class MD5Utils {
     public static String code(String str) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
-            md.update(str.getBytes());
+            byte[] bytes = str.getBytes();
+            md.update(bytes);
             byte[] byteDigest = md.digest();
             int i;
             StringBuffer buf = new StringBuffer("");
