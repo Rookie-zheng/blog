@@ -10,4 +10,6 @@ ADD blog-0.0.1-SNAPSHOT.jar app.jar
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
            EXPOSE 8989
 
+测试代码
+123456
 Git 测试
